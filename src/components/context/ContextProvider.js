@@ -17,7 +17,7 @@ function ContextProvider({children}) {
     const [selectedGender, setSelectedGender] = useState(gender[0]);
 
 
-    const urlBuilder = (endpoint, page) => `${api}/${endpoint}?page=${page}species=${selectedSpecies}&status=${selectedStatus}&gender=${selectedGender}`
+    const urlBuilder = (endpoint, page) => `${api}/${endpoint}?page=${page}&species=${selectedSpecies}&status=${selectedStatus}&gender=${selectedGender}`
     const nextPageHandler = () => {
         setPageOfCharacters(pageOfCharacters+1)
     }
