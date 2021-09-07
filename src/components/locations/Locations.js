@@ -22,17 +22,20 @@ function Locations() {
         selectedLocationName,
         selectedLocationType,
         selectedLocationDimension,
+        onlyUnique
     } = useContext(Context)
 
     useEffect(() => {
         fetchData(LocationUrlBuilder(LOCATIONS, pageOfCharacters))
-    }, [pageOfCharacters])
+    }, [pageOfCharacters, selectedLocationName, selectedLocationType,
+        selectedLocationDimension])
+
 
     return (
         <div>
-            <Filter select={selectedLocationName} choice={choiceLocationNameHandler} filter={locationNames}/>
-            <Filter select={selectedLocationType} choice={choiceLocationTypeHandler} filter={locationTypes}/>
-            <Filter select={selectedLocationDimension} choice={choiceLocationDimensionHandler} filter={locationDimensions}/>
+            <Filter select={selectedLocationName} choice={choiceLocationNameHandler} filter={locationNames.filter(onlyUnique)}/>
+            <Filter select={selectedLocationType} choice={choiceLocationTypeHandler} filter={locationTypes.filter(onlyUnique)}/>
+            <Filter select={selectedLocationDimension} choice={choiceLocationDimensionHandler} filter={locationDimensions.filter(onlyUnique)}/>
             {charactersArray.map(character =>
                 <div>
                     <div>{character.id}</div>

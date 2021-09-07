@@ -63,6 +63,10 @@ function ContextProvider({children}) {
         setSelectedLocationDimension(e.target.value)
     }
 
+    const onlyUnique = (value, index, self) => {
+        return self.indexOf(value) === index;
+    }
+
 
     const fetchData = async (urlbuilder) => {
         setIsLoading(false)
@@ -117,7 +121,7 @@ function ContextProvider({children}) {
             CharactersUrlBuilder,
             EpisodeUrlBuilder,
             LocationUrlBuilder,
-
+            onlyUnique
 
         }}>
             {children}

@@ -15,7 +15,8 @@ function Episodes() {
         selectedEpisodeName,
         choiceEpisodeNameHandler,
         episodeNames,
-        EpisodeUrlBuilder
+        EpisodeUrlBuilder,
+        onlyUnique
     } = useContext(Context)
 
     useEffect(() => {
@@ -24,7 +25,7 @@ function Episodes() {
 
     return (
         <div>
-            <Filter select={selectedEpisodeName} choice={choiceEpisodeNameHandler} filter={episodeNames}/>
+            <Filter select={selectedEpisodeName} choice={choiceEpisodeNameHandler} filter={episodeNames.filter(onlyUnique)}/>
             {charactersArray.map(episode =>
                     <div key={episode.id}>
                         <div>{episode.id}</div>
