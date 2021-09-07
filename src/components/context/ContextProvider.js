@@ -16,8 +16,24 @@ function ContextProvider({children}) {
     const [selectedSpecies, setSelectedSpecies] = useState(species[0]);
     const [selectedGender, setSelectedGender] = useState(gender[0]);
 
+    const episodeNames = ['']
+    const locationNames = ['']
+    const locationTypes = ['']
+    const locationDimensions = ['']
 
-    const urlBuilder = (endpoint, page) => `${api}/${endpoint}?page=${page}&species=${selectedSpecies}&status=${selectedStatus}&gender=${selectedGender}`
+    charactersArray.forEach(value => episodeNames.push(value.name))
+    charactersArray.forEach(value => locationNames.push(value.name))
+    charactersArray.forEach(value => locationTypes.push(value.type))
+    charactersArray.forEach(value => locationDimensions.push(value.dimension))
+
+    const [selectedEpisodeName, setSelectedEpisodeName] = useState(episodeNames[0]);
+    const [selectedLocationName, setSelectedLocationName] = useState(locationNames[0]);
+    const [selectedLocationType, setSelectedLocationType] = useState(locationTypes[0]);
+    const [selectedLocationDimension, setSelectedLocationDimension] = useState(locationDimensions[0]);
+
+    const CharactersUrlBuilder = (endpoint, page) => `${api}/${endpoint}?page=${page}&species=${selectedSpecies}&status=${selectedStatus}&gender=${selectedGender}`
+    const EpisodeUrlBuilder = (endpoint, page) => `${api}/${endpoint}?page=${page}&name=${selectedEpisodeName}`
+    const LocationUrlBuilder = (endpoint, page) => `${api}/${endpoint}?page=${page}name=${selectedLocationName}&type=${selectedLocationType}&dimension=${selectedLocationDimension}`
     const nextPageHandler = () => {
         setPageOfCharacters(pageOfCharacters+1)
     }
@@ -34,11 +50,24 @@ function ContextProvider({children}) {
     const choiceGenderHandler = (e) => {
         setSelectedGender(e.target.value)
     }
+    const choiceEpisodeNameHandler = (e) => {
+        setSelectedEpisodeName(e.target.value)
+    }
+    const choiceLocationNameHandler = (e) => {
+        setSelectedLocationName(e.target.value)
+    }
+    const choiceLocationTypeHandler = (e) => {
+        setSelectedLocationType(e.target.value)
+    }
+    const choiceLocationDimensionHandler = (e) => {
+        setSelectedLocationDimension(e.target.value)
+    }
 
-const fetchData = async (endpoint, page) => {
+
+    const fetchData = async (urlbuilder) => {
         setIsLoading(false)
         try {
-            const resp = await fetch(urlBuilder(endpoint, page))
+            const resp = await fetch(urlbuilder)
             if (!resp.ok) {
                 throw  Error('Unfortunately, could not fetch data...')
             } else {
@@ -46,13 +75,13 @@ const fetchData = async (endpoint, page) => {
                 const {results, info} = json
                 setCharactersArray(results)
                 setpageNumber(info.pages)
-        }
+            }
         }catch (err) {
             setError(err.message)
         }
         setIsLoading(true)
     }
-    
+
 
 
     return (
@@ -65,14 +94,31 @@ const fetchData = async (endpoint, page) => {
             charactersArray,
             nextPageHandler,
             prevPageHandler,
-            pageOfCharacters,
-            pageNumber,
             choiceStatusHandler,
             choiceSpeciesHandler,
             choiceGenderHandler,
+            choiceEpisodeNameHandler,
+            choiceLocationNameHandler,
+            choiceLocationTypeHandler,
+            choiceLocationDimensionHandler,
+            pageOfCharacters,
+            pageNumber,
             selectedStatus,
             selectedSpecies,
             selectedGender,
+            selectedEpisodeName,
+            selectedLocationName,
+            selectedLocationType,
+            selectedLocationDimension,
+            episodeNames,
+            locationNames,
+            locationTypes,
+            locationDimensions,
+            CharactersUrlBuilder,
+            EpisodeUrlBuilder,
+            LocationUrlBuilder,
+
+
         }}>
             {children}
         </Context.Provider>

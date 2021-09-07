@@ -40,7 +40,11 @@ const Character = memo(({character}) => {
         </CardContent>
         <Link to={`/details/:${character.id}`}>
             <CardActions>
-                <Button size="small" color="primary">
+                <Button style={{
+                    color: 'rgb(28,28,26)',
+                    fontSize: 'small',
+                    background: 'rgba(201,201,35,0.89)'}}
+                >
                     See details
                 </Button>
             </CardActions>

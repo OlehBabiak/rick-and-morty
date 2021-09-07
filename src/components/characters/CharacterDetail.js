@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
-import {Link, useParams, useRouteMatch} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import Context from "../context/Context";
-import Character from "./Character";
 import {Button} from "@material-ui/core";
 
 function CharacterDetail() {
@@ -27,9 +26,9 @@ function CharacterDetail() {
             )}
             <Link to='/character'>
                 <Button style={{
-                    color: 'aliceblue',
-                    fontSize: 'large',
-                    background: '#0b3d91'
+                    color: 'rgb(28,28,26)',
+                    fontSize: 'small',
+                    background: 'rgba(201,201,35,0.89)'
                 }}>
                     GO BACK
                 </Button>

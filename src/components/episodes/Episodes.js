@@ -1,5 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import Context from "../context/Context";
+import Filter from "../filter/Filter";
 
 function Episodes() {
 
@@ -10,23 +11,26 @@ function Episodes() {
         nextPageHandler,
         prevPageHandler,
         pageOfCharacters,
-        pageNumber
+        pageNumber,
+        selectedEpisodeName,
+        choiceEpisodeNameHandler,
+        episodeNames,
+        EpisodeUrlBuilder
     } = useContext(Context)
 
     useEffect(() => {
-        fetchData(EPISODES, pageOfCharacters)
-    }, [pageOfCharacters])
+        fetchData(EpisodeUrlBuilder(EPISODES, pageOfCharacters))
+    }, [pageOfCharacters, selectedEpisodeName])
 
     return (
         <div>
+            <Filter select={selectedEpisodeName} choice={choiceEpisodeNameHandler} filter={episodeNames}/>
             {charactersArray.map(episode =>
-                <tr>
-                    <div>
+                    <div key={episode.id}>
                         <div>{episode.id}</div>
                         <div>{episode.name}</div>
                         <div>{episode.air_date}</div>
                     </div>
-                </tr>
                 )}
             {pageOfCharacters > 1 && <button onClick={() => prevPageHandler()}>Prew Page</button>}
             {pageOfCharacters < pageNumber && <button onClick={() => nextPageHandler()}>Next Page</button>}

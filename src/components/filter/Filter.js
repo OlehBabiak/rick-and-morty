@@ -11,7 +11,7 @@ const BootstrapInput = withStyles((theme) => ({
         borderRadius: 4,
         position: 'relative',
         backgroundColor: theme.palette.background.paper,
-        border: '1px solid #ced4da',
+        border: '1px solid rgba(201,201,35,0.89)',
         fontSize: 16,
         padding: '10px 26px 10px 12px',
         transition: theme.transitions.create(['border-color', 'box-shadow']),
@@ -29,8 +29,8 @@ const BootstrapInput = withStyles((theme) => ({
         ].join(','),
         '&:focus': {
             borderRadius: 4,
-            borderColor: '#80bdff',
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+            borderColor: 'rgba(201,201,35,0.89)',
+            boxShadow: '0 0 0 0.2rem rgba(201,201,35,0.89)',
         },
     },
 }))(InputBase);
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function CharactersFilter(props) {
+function Filter(props) {
     const classes = useStyles();
 
     return (
@@ -60,7 +60,7 @@ function CharactersFilter(props) {
                 >
                     {props.filter.map(item=>
                         <option
-                            key={item.toString()}
+
                             value={item}
                         >{item}
                         </option>
@@ -71,4 +71,4 @@ function CharactersFilter(props) {
     );
 }
 
-export default CharactersFilter;
+export default Filter;

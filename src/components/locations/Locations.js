@@ -1,5 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import Context from "../context/Context";
+import Filter from "../filter/Filter";
 
 function Locations() {
 
@@ -10,15 +11,28 @@ function Locations() {
         nextPageHandler,
         prevPageHandler,
         pageOfCharacters,
-        pageNumber
+        pageNumber,
+        choiceLocationNameHandler,
+        choiceLocationTypeHandler,
+        choiceLocationDimensionHandler,
+        LocationUrlBuilder,
+        locationNames,
+        locationTypes,
+        locationDimensions,
+        selectedLocationName,
+        selectedLocationType,
+        selectedLocationDimension,
     } = useContext(Context)
 
     useEffect(() => {
-        fetchData(LOCATIONS, pageOfCharacters)
+        fetchData(LocationUrlBuilder(LOCATIONS, pageOfCharacters))
     }, [pageOfCharacters])
 
     return (
         <div>
+            <Filter select={selectedLocationName} choice={choiceLocationNameHandler} filter={locationNames}/>
+            <Filter select={selectedLocationType} choice={choiceLocationTypeHandler} filter={locationTypes}/>
+            <Filter select={selectedLocationDimension} choice={choiceLocationDimensionHandler} filter={locationDimensions}/>
             {charactersArray.map(character =>
                 <div>
                     <div>{character.id}</div>
