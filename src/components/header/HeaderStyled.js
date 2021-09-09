@@ -6,7 +6,7 @@ const HeaderWrapper = styled.header`
   z-index: 100;
   top: 0; 
   width: 100%;
-  height: inherit;
+
   font-size: 1.47em;
 `
 
