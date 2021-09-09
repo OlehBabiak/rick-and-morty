@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Context from "./Context";
 import {url, endPoints, status, gender, species} from "../constants"
-import {v4 as uuidv4} from 'uuid'
 
 const getLocalItem = () => {
     let list = localStorage.getItem('todos')
