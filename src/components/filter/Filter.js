@@ -46,7 +46,7 @@ function Filter(props) {
 
     return (
         <>
-            <FormControl className={classes.margin}>
+            <FormControl style={{width: '200px'}} className={classes.margin}>
                 <InputLabel htmlFor="demo-customized-select-native">select</InputLabel>
                 <NativeSelect
                     id="demo-customized-select-native"
@@ -60,7 +60,7 @@ function Filter(props) {
                 >
                     {props.filter.map(item=>
                         <option
-
+                            key={item}
                             value={item}
                         >{item}
                         </option>

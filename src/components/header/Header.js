@@ -1,11 +1,12 @@
 import React from 'react';
 import Navigation from "./navigation/Navigation";
+import {HeaderWrapper} from "./HeaderStyled";
 
 function Header() {
     return (
-        <div>
+        <HeaderWrapper>
             <Navigation/>
-        </div>
+        </HeaderWrapper>
     )
 }
 

@@ -4,10 +4,18 @@ export const endPoints = {
     LOCATIONS: 'location',
 }
 
+export const buttonStyle = {
+    color: 'rgb(28,28,26)',
+    fontSize: 'small',
+    background: 'rgba(201,201,35,0.89)',
+    height: '38px'
+}
+
+
 export const status = ['', 'alive', 'dead', 'unknown']
 export const gender = ['', 'female', 'male', 'genderless', 'unknown']
 export const species = ['', 'human', 'alien', 'mytholog', 'Animal', 'Cronenberg', 'Humanoid', 'Disease', 'Robot', 'unknown', 'Poopybutthole']
-// export const episodeName = ['', 'Pilot', 'Lawnmower Dog', 'Anatomy Park', 'M. Night Shaym-Aliens!', 'Meeseeks and Destroy', 'Rick Potion #9', 'Raising Gazorpazorp', 'Rixty Minutes', 'Something Ricked This Way Comes', 'Close Rick-counters of the Rick Kind', 'Ricksy Business', A Rickle in Time]
+
 
 
 export const urls = [

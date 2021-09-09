@@ -1,25 +1,20 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
-import Characters from '../components/characters/Characters'
-import Locations from '../components/locations/Locations'
-import Episodes from '../components/episodes/Episodes'
+import CharactersPage from './characters/CharactersPage'
+import LocationsPage from './locations/LocationsPage'
+import EpisodesPage from './episodes/EpisodesPage'
 import WatchList from '../components/myWatchList/WatchList'
 import CharacterDetail from '../components/characters/CharacterDetail'
 import Home from '../components/Home/Home'
-import Context from "./context/Context";
 
 function Rotes() {
 
-    const {
-        pageOfCharacters
-    } = useContext(Context)
-
     return (
-        <div>
+        <>
             <Switch>
-                <Route path="/character" component={Characters}/>
-                <Route path="/episode" component={Episodes}/>
-                <Route path="/location" component={Locations}/>
+                <Route path="/character" component={CharactersPage}/>
+                <Route path="/episode" component={EpisodesPage}/>
+                <Route path="/location" component={LocationsPage}/>
                 <Route path="/watch_list" component={WatchList}/>
                 <Route path="/details/:id" component={CharacterDetail}/>
                 <Route path="/" component={Home} />
@@ -27,7 +22,7 @@ function Rotes() {
                     <Redirect to='/'/>
                 </Route>
             </Switch>
-        </div>
+        </>
     );
 }
 

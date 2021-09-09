@@ -17,7 +17,7 @@ const Character = memo(({character}) => {
     const classes = useStyles();
 
     return (
-    <Card className={classes.root}>
+    <Card style={{position: "relative"}} className={classes.root}>
         <CardMedia
             className={classes.media}
             component="img"
@@ -39,7 +39,12 @@ const Character = memo(({character}) => {
             </Typography>
         </CardContent>
         <Link to={`/details/:${character.id}`}>
-            <CardActions>
+            <CardActions
+                style={{
+                    position: "absolute",
+                    bottom: '0px',
+                    right: '0px'
+                }}>
                 <Button style={{
                     color: 'rgb(28,28,26)',
                     fontSize: 'small',
