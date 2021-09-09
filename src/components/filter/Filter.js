@@ -49,6 +49,7 @@ function Filter(props) {
             <FormControl style={{width: '200px'}} className={classes.margin}>
                 <InputLabel htmlFor="demo-customized-select-native">select</InputLabel>
                 <NativeSelect
+                    placeholder={'kjkljldkfj'}
                     id="demo-customized-select-native"
                     value={props.select}
                     onChange={props.choice}

@@ -5,6 +5,9 @@ const ItemPageWrapper = styled.div`
   min-height: 100vh;
   margin-top: 15vh;
   background: #e0dfdb;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ErrorWrapper = styled.div`

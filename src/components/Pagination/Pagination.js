@@ -1,11 +1,12 @@
 import React from 'react';
 import {Button} from "@material-ui/core";
 import {buttonStyle} from "../constants"
+import {PaginationWrapper} from "./PaginationStyled";
 
 const Pagination = ({pageOfCharacters, nextPageHandler, prevPageHandler, pageNumber}) => {
 
     return (
-        <div>
+        <PaginationWrapper>
             {pageOfCharacters > 1 &&
             <Button
                 style={buttonStyle}
@@ -20,7 +21,7 @@ const Pagination = ({pageOfCharacters, nextPageHandler, prevPageHandler, pageNum
             >
                 Next Page
             </Button>}
-        </div>
+        </PaginationWrapper>
     );
 }
 

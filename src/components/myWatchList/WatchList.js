@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React, {useContext, useEffect, useState} from 'react';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import InputBase from '@material-ui/core/InputBase';
@@ -10,6 +10,7 @@ import {buttonStyle} from "../constants"
 import {AddEpisodeButtonWrapper, FormWrapper} from "./WatchListItemStyled";
 import {ItemPageWrapper} from "../characters/ItemsListStyled";
 import List from "@material-ui/core/List";
+import {v4 as uuidv4} from "uuid";
 
 const BootstrapInput = withStyles((theme) => ({
 
@@ -57,16 +58,37 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 export default function WatchList() {
 
     const {
-        onTodoChange,
-        todoValues,
-        onCreate,
-        todos
+        onTodoCreate,
+        todos,
     } = useContext(Context)
 
     const classes = useStyles();
+
+    const [todoValues, setTodoValues] = useState(
+        {
+            id: null,
+            title: '',
+            complited: false
+        }
+    )
+    const onTodoChange = ({target: {value}}) => {
+        setTodoValues({...todoValues, title: value})
+    }
+    const onCreate = () => {
+        onTodoCreate({...todoValues, id: uuidv4()})
+        setTodoValues(
+            {
+                id: null,
+                title: '',
+                complited: false
+            }
+        )
+    }
 
     return (
         <ItemPageWrapper>
@@ -99,7 +121,7 @@ export default function WatchList() {
                         index={index}
                         key={episode.id}
                     />
-                   )
+                )
                 }
             </List>
             <br/>

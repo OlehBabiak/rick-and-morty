@@ -19,7 +19,7 @@ function Rotes() {
                 <Route path="/details/:id" component={CharacterDetail}/>
                 <Route path="/" component={Home} />
                 <Route>
-                    <Redirect to='/'/>
+                    <Redirect to='/character'/>
                 </Route>
             </Switch>
         </>

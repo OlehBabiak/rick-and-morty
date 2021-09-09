@@ -12,45 +12,55 @@ const WatchListItem = memo(({episode, index}) => {
     const [checkedWishListCheckbox, setCheckedWishListCheckbox] = React.useState(false);
 
     const {
-        onTodoDelete,
-        onMarkIsDoneToggle,
+        removeTodo,
+        isDoneToggle
     } = useContext(Context)
 
     const handleChange = (event) => {
-       onMarkIsDoneToggle(episode.id, checkedWishListCheckbox)
+        onMarkIsDoneToggle(episode.id, checkedWishListCheckbox)
         setCheckedWishListCheckbox(event.target.checked)
     };
+
+    const onTodoDelete = (arg) => {
+        const answer = window.confirm('Are you sure?')
+        if (answer) {
+            removeTodo(arg)
+        }
+    }
+    const onMarkIsDoneToggle = (arg, checkedWishListCheckbox) => {
+        isDoneToggle(arg, checkedWishListCheckbox);
+    }
 
     return (
         <ListItem
             key={index}
             button
-        style={{
-            margin: '5px auto',
-            background: ''
-        }}
+            style={{
+                margin: '5px auto',
+                background: ''
+            }}
         >
-            {!episode.complited?
+            {!episode.complited ?
                 <ListItem key={index} button>
-                    <ListItemText id={index} primary={episode.title} />
+                    <ListItemText id={index} primary={episode.title}/>
                 </ListItem>
                 :
                 <ContentWrapper>
                     <ListItem key={index} button>
-                        <ListItemText id={index} primary={episode.title} />
+                        <ListItemText id={index} primary={episode.title}/>
                     </ListItem>
                 </ContentWrapper>
             }
             <ListItemSecondaryAction>
                 <Button style={buttonStyle}
-                        onClick={()=> onTodoDelete(episode.id)}
+                        onClick={() => onTodoDelete(episode.id)}
                 >
                     Delete episode
                 </Button>
                 <Checkbox
                     onChange={handleChange}
                     checked={checkedWishListCheckbox}
-                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                    inputProps={{'aria-label': 'primary checkbox'}}
                 />
             </ListItemSecondaryAction>
         </ListItem>

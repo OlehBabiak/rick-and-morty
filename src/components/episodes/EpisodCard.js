@@ -27,10 +27,10 @@ const EpisodCard = memo(({character}) => {
     return (
         <Card className={classes.root}>
             <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                <Typography variant="h5" component="h2">
                     Name: {character.name}
                 </Typography>
-                <Typography variant="h5" component="h2">
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
                     Air date: {character.air_date}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">

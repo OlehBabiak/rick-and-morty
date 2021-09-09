@@ -1,7 +1,16 @@
 import React, {useState} from 'react';
 import Context from "./Context";
 import {url, endPoints, status, gender, species} from "../constants"
-import { v4 as uuidv4 } from 'uuid'
+import {v4 as uuidv4} from 'uuid'
+
+const getLocalItem = () => {
+    let list = localStorage.getItem('todos')
+    if (list) {
+        return JSON.parse(localStorage.getItem('todos'))
+    } else {
+        return []
+    }
+}
 
 function ContextProvider({children}) {
 
@@ -22,8 +31,6 @@ function ContextProvider({children}) {
     const locationTypes = ['']
     const locationDimensions = ['']
 
-
-
     charactersArray.forEach(value => episodeNames.push(value.name))
     charactersArray.forEach(value => locationNames.push(value.name))
     charactersArray.forEach(value => locationTypes.push(value.type))
@@ -38,70 +45,36 @@ function ContextProvider({children}) {
     const EpisodeUrlBuilder = (endpoint, page) => `${api}/${endpoint}?page=${page}&name=${selectedEpisodeName}`
     const LocationUrlBuilder = (endpoint, page) => `${api}/${endpoint}?page=${page}&name=${selectedLocationName}&type=${selectedLocationType}&dimension=${selectedLocationDimension}`
 
+    let [todos, setTodos] = useState(getLocalItem())
+    localStorage.setItem('todos', JSON.stringify(todos));
 
-    const [todoValues, setTodoValues] = useState(
-        {
-            id: null,
-            title: '',
-            complited: false
-        }
-    )
-
-    let [todos, setTodos] = useState([])
-
-
-    const onTodoChange = ({target: {value}}) => {
-        setTodoValues({...todoValues, title: value})
-    }
-
-    const onTodoCreate = (newTodo) =>{
-        if(!newTodo || !newTodo.title) {
+    const onTodoCreate = (newTodo) => {
+        if (!newTodo || !newTodo.title) {
             console.error('wrng arg for new todo, should be smth like {title: "..."}')
             return
         }
-        setTodos([newTodo,...todos])
+        setTodos([newTodo, ...todos])
     }
-
-
 
     const isDoneToggle = (id, checkedWishListCheckbox) => {
         setTodos(todos.map(todo => {
-            if(todo.id === id) {
+            if (todo.id === id) {
                 todo.complited = !checkedWishListCheckbox
             }
             return todo
         }))
     }
 
-    const onCreate = () => {
-        onTodoCreate({...todoValues, id:uuidv4()})
-        setTodoValues(
-            {
-                id: null,
-                title: '',
-                complited: false
-            }
-        )
-    }
-    const removeTodo = (id) => {
-        setTodos(todos.filter(todo => todo.id !==id))
-    }
 
-    const onTodoDelete = (arg) => {
-        const answer = window.confirm('Are you sure?')
-        if(answer){
-            removeTodo(arg)
-        }
-    }
-    const onMarkIsDoneToggle = (arg, checkedWishListCheckbox) =>{
-        isDoneToggle(arg, checkedWishListCheckbox);
+    const removeTodo = (id) => {
+        setTodos(todos.filter(todo => todo.id !== id))
     }
 
     const nextPageHandler = () => {
-        setPageOfCharacters(pageOfCharacters+1)
+        setPageOfCharacters(pageOfCharacters + 1)
     }
     const prevPageHandler = () => {
-        setPageOfCharacters(pageOfCharacters-1)
+        setPageOfCharacters(pageOfCharacters - 1)
     }
     const choiceStatusHandler = (e) => {
         setSelectedStatus(e.target.value)
@@ -125,12 +98,9 @@ function ContextProvider({children}) {
         setSelectedLocationDimension(e.target.value)
     }
 
-
-
     const onlyUnique = (value, index, self) => {
         return self.indexOf(value) === index;
     }
-
 
     const fetchData = async (urlbuilder) => {
         setIsLoading(false)
@@ -144,13 +114,11 @@ function ContextProvider({children}) {
                 setCharactersArray(results)
                 setpageNumber(info.pages)
             }
-        }catch (err) {
+        } catch (err) {
             setError(err.message)
         }
         setIsLoading(true)
     }
-
-
 
     return (
         <Context.Provider value={{
@@ -188,13 +156,9 @@ function ContextProvider({children}) {
             onlyUnique,
             removeTodo,
             isDoneToggle,
-            onTodoChange,
-            todoValues,
-            onCreate,
             todos,
-            onTodoDelete,
-            onMarkIsDoneToggle,
-            isLoading
+            isLoading,
+            onTodoCreate
         }}>
             {children}
         </Context.Provider>
