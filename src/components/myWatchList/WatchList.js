@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 export default function WatchList() {
 
     const {
@@ -32,7 +31,7 @@ export default function WatchList() {
     } = useContext(Context)
 
     useEffect(() => {
-            localStorage.setItem('todos', JSON.stringify(todos));
+        localStorage.setItem('todos', JSON.stringify(todos));
     }, [todos]);
 
     const classes = useStyles();
