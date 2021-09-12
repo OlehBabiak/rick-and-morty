@@ -1,9 +1,7 @@
-import React, {useContext, useState} from 'react';
-import {makeStyles, withStyles} from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
+import React, {useContext, useEffect, useState} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import InputBase from '@material-ui/core/InputBase';
-import {Button} from "@material-ui/core";
+import {Button, TextField} from "@material-ui/core";
 import Context from "../context/Context";
 import WatchListItem from "./WatchListItem";
 import {buttonStyle} from "../constants"
@@ -12,40 +10,6 @@ import {ItemPageWrapper} from "../characters/ItemsListStyled";
 import List from "@material-ui/core/List";
 import {v4 as uuidv4} from "uuid";
 
-const BootstrapInput = withStyles((theme) => ({
-
-    root: {
-        'label + &': {
-            marginTop: theme.spacing(3),
-        },
-    },
-    input: {
-        borderRadius: 4,
-        position: 'relative',
-        backgroundColor: theme.palette.background.paper,
-        border: '1px solid #ced4da',
-        fontSize: 16,
-        padding: '10px 26px 10px 12px',
-        transition: theme.transitions.create(['border-color', 'box-shadow']),
-        fontFamily: [
-            '-apple-system',
-            'BlinkMacSystemFont',
-            '"Segoe UI"',
-            'Roboto',
-            '"Helvetica Neue"',
-            'Arial',
-            'sans-serif',
-            '"Apple Color Emoji"',
-            '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"',
-        ].join(','),
-        '&:focus': {
-            borderRadius: 4,
-            borderColor: '#80bdff',
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-        },
-    },
-}))(InputBase);
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -67,28 +31,32 @@ export default function WatchList() {
         todos,
     } = useContext(Context)
 
+    useEffect(() => {
+            localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
+
     const classes = useStyles();
 
-    const [todoValues, setTodoValues] = useState(
-        {
-            id: null,
-            title: '',
-            complited: false
-        }
-    )
-    const onTodoChange = ({target: {value}}) => {
-        setTodoValues({...todoValues, title: value})
-    }
+    const [title, setTitle] = useState("");
+    const [titleError, setTitleError] = useState(null);
+
     const onCreate = () => {
-        onTodoCreate({...todoValues, id: uuidv4()})
-        setTodoValues(
-            {
-                id: null,
-                title: '',
-                complited: false
-            }
-        )
-    }
+        if (title.trim().length !== 0) {
+            onTodoCreate({
+                id: uuidv4(),
+                title: title,
+                complited: false,
+            });
+            setTitle("");
+        } else {
+            setTitleError("Not valid text");
+        }
+    };
+
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value);
+        setTitleError(null);
+    };
 
     return (
         <ItemPageWrapper>
@@ -96,15 +64,17 @@ export default function WatchList() {
                 <FormControl
                     className={classes.margin}
                 >
-                    <InputLabel htmlFor="demo-customized-textbox">Episode</InputLabel>
-                    <BootstrapInput
+                    <TextField
+                        error={!!titleError}
                         id="demo-customized-textbox"
                         type='text'
                         placeholder='Enter Episode'
-                        onChange={onTodoChange}
-                        value={todoValues.title}
+                        onChange={handleTitleChange}
+                        value={title}
+                        helperText={titleError || ""}
                     />
                 </FormControl>
+
                 <AddEpisodeButtonWrapper>
                     <Button
                         style={buttonStyle}

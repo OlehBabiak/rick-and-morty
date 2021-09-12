@@ -6,27 +6,33 @@ import {ErrorWrapper, ListWrapper, LoaderWrapper} from "./ItemsListStyled";
 import Loader from "react-loader-spinner";
 import NotFound from "../Not Found/NotFound";
 
-function CharactersList() {
+function CharactersList({charactersArray}) {
 
     const {
-        charactersArray,
         error,
-        isLoading
+        isLoading,
     } = useContext(Context)
+
+
 
     return (
         <ListWrapper>
-            {error &&
-                <ErrorWrapper>
+            {error && <ErrorWrapper>
                     <img src={sorry} alt="404"/>
                     <p>{error}</p>
                 </ErrorWrapper>}
-            {!isLoading &&
-            <LoaderWrapper><Loader type="Circles" color="#C9C923E2" height={80} width={80}/></LoaderWrapper>}
-            {!charactersArray.length &&
-            <NotFound text={'ERROR 404'}/>}
-            {charactersArray.map(character =>
-                <Character character={character} key={character.id}/>
+            {isLoading && (<LoaderWrapper>
+                <Loader
+                    type="Circles"
+                    color="#C9C923E2"
+                    height={80} width={80}/>
+            </LoaderWrapper>)}
+            {charactersArray && charactersArray.length === 0  && <NotFound text={'No Characters'}/>}
+            {charactersArray?.map(character =>
+                <Character
+                    character={character}
+                    key={character.id}
+                />
             )}
         </ListWrapper>
     );

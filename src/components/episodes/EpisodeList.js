@@ -6,10 +6,9 @@ import Loader from "react-loader-spinner";
 import NotFound from "../Not Found/NotFound";
 import EpisodCard from "./EpisodCard";
 
-function EpisodeList() {
+function EpisodeList({episodeArray}) {
 
     const {
-        charactersArray,
         error,
         isLoading
     } = useContext(Context)
@@ -21,11 +20,11 @@ function EpisodeList() {
                 <img src={sorry} alt="404"/>
                 <p>{error}</p>
             </ErrorWrapper>}
-            {!isLoading &&
+            {isLoading &&
             <LoaderWrapper><Loader type="Circles" color="#C9C923E2" height={80} width={80}/></LoaderWrapper>}
-            {!charactersArray.length &&
-            <NotFound text={'ERROR 404'}/>}
-            {charactersArray.map(character =>
+            {episodeArray && episodeArray.length === 0 &&
+            <NotFound text={'No Episods'}/>}
+            {episodeArray.map(character =>
                 <EpisodCard
                     key={character.id}
                     character={character}

@@ -5,7 +5,7 @@ import {NotFoundWrapper} from "../Not Found/NotFoundStyled";
 function NotFound({text}) {
     return (
         <NotFoundWrapper>
-            <Link to={'/'}>
+            <Link to={'/character'}>
                 <span>{text}</span>
             </Link>
         </NotFoundWrapper>

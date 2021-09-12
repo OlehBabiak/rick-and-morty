@@ -7,7 +7,7 @@ import WatchList from '../components/myWatchList/WatchList'
 import CharacterDetail from '../components/characters/CharacterDetail'
 import Home from '../components/Home/Home'
 
-function Rotes() {
+function Routes() {
 
     return (
         <>
@@ -26,4 +26,4 @@ function Rotes() {
     );
 }
 
-export default Rotes;
+export default Routes;

@@ -1,6 +1,6 @@
 import './App.css';
 import Header from "./components/header/Header";
-import Rotes from "./components/Rotes";
+import Routes from "./components/Routes";
 import {Container} from "./components/characters/ItemsListStyled";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <Container>
       <Header/>
         <div>
-            <Rotes/>
+            <Routes/>
         </div>
     </Container>
   );
