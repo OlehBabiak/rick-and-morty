@@ -74,9 +74,12 @@ function LocationsPage() {
     return (
         <ItemPageWrapper>
             <FilterWrapper>
-                <Filter select={selectedLocationName} choice={choiceLocationNameHandler} filter={locationNames.filter(onlyUnique)}/>
-                <Filter select={selectedLocationType} choice={choiceLocationTypeHandler} filter={locationTypes.filter(onlyUnique)}/>
-                <Filter select={selectedLocationDimension} choice={choiceLocationDimensionHandler} filter={locationDimensions.filter(onlyUnique)}/>
+                <Filter select={selectedLocationName} choice={choiceLocationNameHandler}
+                        filter={locationNames.filter(onlyUnique)}/>
+                <Filter select={selectedLocationType} choice={choiceLocationTypeHandler}
+                        filter={locationTypes.filter(onlyUnique)}/>
+                <Filter select={selectedLocationDimension} choice={choiceLocationDimensionHandler}
+                        filter={locationDimensions.filter(onlyUnique)}/>
             </FilterWrapper>
             <LocationList
                 locationArray={locationArray}

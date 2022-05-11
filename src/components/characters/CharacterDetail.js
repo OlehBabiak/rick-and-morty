@@ -38,7 +38,7 @@ function CharacterDetail() {
                             </Link>
                         </div>
                     </DetailContentWrapper>
-            )}
+                )}
         </DetailPageWrapper>
     );
 }

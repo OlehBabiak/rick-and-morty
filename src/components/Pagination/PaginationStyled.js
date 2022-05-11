@@ -9,6 +9,6 @@ const PaginationWrapper = styled.div`
   margin-top: auto;
 `
 
-export  {
+export {
     PaginationWrapper
 }

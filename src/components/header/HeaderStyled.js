@@ -2,9 +2,9 @@ import styled from "styled-components"
 
 const HeaderWrapper = styled.header`
   overflow: hidden;
-  position: fixed; 
+  position: fixed;
   z-index: 100;
-  top: 0; 
+  top: 0;
   width: 100%;
 
   font-size: 1.47em;
@@ -59,8 +59,7 @@ const MobileMenu = styled.div`
     justify-items: end;
     padding-right: 25px;
     color: #d5dcdc;
-  }
-   ;
+  };
 `
 
 export {

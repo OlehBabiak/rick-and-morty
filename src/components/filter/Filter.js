@@ -53,13 +53,13 @@ function Filter(props) {
                     id="demo-customized-select-native"
                     value={props.select}
                     onChange={props.choice}
-                    input={<BootstrapInput />}
+                    input={<BootstrapInput/>}
                     style={{
                         background: 'white',
                         borderRadius: 4,
                     }}
                 >
-                    {props.filter.map(item=>
+                    {props.filter.map(item =>
                         <option
                             key={item}
                             value={item}

@@ -17,7 +17,7 @@ function Routes() {
                 <Route path="/location" component={LocationsPage}/>
                 <Route path="/watch_list" component={WatchList}/>
                 <Route path="/details/:id" component={CharacterDetail}/>
-                <Route path="/" component={Home} />
+                <Route path="/" component={Home}/>
                 <Route>
                     <Redirect to='/character'/>
                 </Route>

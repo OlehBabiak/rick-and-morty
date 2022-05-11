@@ -12,7 +12,6 @@ const NotFoundWrapper = styled.div`
 `
 
 
-
 export {
     NotFoundWrapper
 }

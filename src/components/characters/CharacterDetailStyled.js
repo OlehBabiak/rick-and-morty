@@ -8,7 +8,7 @@ const DetailContentWrapper = styled.div`
   align-items: stretch;
   justify-items: center;
 
-  @media (max-width: 435px){
+  @media (max-width: 435px) {
     justify-items: left;
   }
 `

@@ -60,10 +60,11 @@ function EpisodesPage() {
     return (
         <ItemPageWrapper>
             <FilterWrapper>
-                <Filter select={selectedEpisodeName} choice={choiceEpisodeNameHandler} filter={episodeNames.filter(onlyUnique)}/>
+                <Filter select={selectedEpisodeName} choice={choiceEpisodeNameHandler}
+                        filter={episodeNames.filter(onlyUnique)}/>
             </FilterWrapper>
             <EpisodeList
-            episodeArray = {episodeArray}
+                episodeArray={episodeArray}
             />
             <Pagination
                 nextPageHandler={nextPageHandler}

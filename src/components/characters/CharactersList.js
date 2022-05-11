@@ -14,20 +14,19 @@ function CharactersList({charactersArray}) {
     } = useContext(Context)
 
 
-
     return (
         <ListWrapper>
             {error && <ErrorWrapper>
-                    <img src={sorry} alt="404"/>
-                    <p>{error}</p>
-                </ErrorWrapper>}
+                <img src={sorry} alt="404"/>
+                <p>{error}</p>
+            </ErrorWrapper>}
             {isLoading && (<LoaderWrapper>
                 <Loader
                     type="Circles"
                     color="#C9C923E2"
                     height={80} width={80}/>
             </LoaderWrapper>)}
-            {charactersArray && charactersArray.length === 0  && <NotFound text={'No Characters'}/>}
+            {charactersArray && charactersArray.length === 0 && <NotFound text={'No Characters'}/>}
             {charactersArray?.map(character =>
                 <Character
                     character={character}

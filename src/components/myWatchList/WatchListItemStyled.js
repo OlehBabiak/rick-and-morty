@@ -7,7 +7,7 @@ const ContentWrapper = styled.div`
 
 const FormWrapper = styled.div`
   display: flex;
-justify-content: space-around;
+  justify-content: space-around;
 `
 
 const AddEpisodeButtonWrapper = styled.div`

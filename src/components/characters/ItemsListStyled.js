@@ -16,7 +16,7 @@ const ErrorWrapper = styled.div`
   grid-template-columns: 1fr;
   justify-items: center;
   text-align: center;
-  `
+`
 const LoaderWrapper = styled.div`
   margin-top: 20vh;
   display: grid;
@@ -42,31 +42,31 @@ const ListWrapper = styled.div`
   align-items: stretch;
   justify-items: center;
   row-gap: 20px;
- margin: 10px;
+  margin: 10px;
 `
 
 const Container = styled.div`
   width: 1366px;
   margin: 0 auto;
   height: 100%;
-  
-  @media (max-width: 1030px){
+
+  @media (max-width: 1030px) {
     max-width: 860px;
   }
 
-  @media (max-width: 790px){
+  @media (max-width: 790px) {
     max-width: 700px;
   }
 
-  @media (max-width: 435px){
+  @media (max-width: 435px) {
     max-width: 400px;
   }
 
-  @media (max-width: 380px){
+  @media (max-width: 380px) {
     max-width: 350px;
   }
 
-  @media (max-width: 330px){
+  @media (max-width: 330px) {
     max-width: 300px;
   }
 `;
